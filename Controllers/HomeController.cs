@@ -15,14 +15,14 @@ namespace centricTeam4.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Employee recognition is very important at Centric Consulting, so nominate a co-worker for their exemplary performance or reinforce particular behaviors, practices, or activities that result in better performance.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Centric Consulting Contact Page";
 
             return View();
         }
