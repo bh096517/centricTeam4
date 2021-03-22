@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web;
 
 namespace centricTeam4.Models
+
 {
+
     public class Profile
     {
         public Guid ProfileID { get; set; }
-
+        
         [Required]
         [Display(Name = "Last Name")]
         public string lastName { get; set; }

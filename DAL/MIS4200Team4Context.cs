@@ -14,8 +14,10 @@ using System.Web;
 
             }
             public DbSet<Profile> profile { get; set; }
+        public DbSet<recognition> recognition { get; set; }
 
 
-        }
+
+    }
     }
   
