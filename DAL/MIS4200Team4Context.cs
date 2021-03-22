@@ -9,12 +9,14 @@ using System.Web;
     {
         public class MIS4200Team4Context : DbContext
         {
-            public MIS4200Team4Context() : base("name=DefaultConnection")
+        //internal object recognition;
+
+        public MIS4200Team4Context() : base("name=DefaultConnection")
             {
 
             }
             public DbSet<Profile> profile { get; set; }
-        public DbSet<recognition> recognition { get; set; }
+        //public DbSet<recognition> Recognition { get; set; }
 
 
 
