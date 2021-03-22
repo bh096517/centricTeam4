@@ -37,6 +37,7 @@ namespace centricTeam4.Controllers
         }
 
         // GET: Profiles/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -53,14 +54,26 @@ namespace centricTeam4.Controllers
             {
                 profile.ProfileID = Guid.NewGuid();
                 db.profile.Add(profile);
-                db.SaveChanges();
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.error = ex.Message;
+                    return View("DuplicateUser");
+                }
                 return RedirectToAction("Index");
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
 
             return View(profile);
         }
 
         // GET: Profiles/Edit/5
+        [Authorize]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -92,6 +105,7 @@ namespace centricTeam4.Controllers
         }
 
         // GET: Profiles/Delete/5
+        [Authorize]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
