@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\employeeRecognitionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilesController.cs" />
@@ -178,6 +179,7 @@
     </Compile>
     <Compile Include="Migrations\Centric\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\employeeRecognition.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -265,6 +267,11 @@
     <Content Include="Views\recognitions\Details.cshtml" />
     <Content Include="Views\recognitions\Edit.cshtml" />
     <Content Include="Views\recognitions\Index.cshtml" />
+    <Content Include="Views\employeeRecognitions\Create.cshtml" />
+    <Content Include="Views\employeeRecognitions\Delete.cshtml" />
+    <Content Include="Views\employeeRecognitions\Details.cshtml" />
+    <Content Include="Views\employeeRecognitions\Edit.cshtml" />
+    <Content Include="Views\employeeRecognitions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

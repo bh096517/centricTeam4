@@ -16,6 +16,7 @@ using System.Web;
 
             }
             public DbSet<Profile> profile { get; set; }
+        public DbSet<employeeRecognition> EmployeeRecognitions { get; set; }
         //public DbSet<recognition> Recognition { get; set; }
 
 

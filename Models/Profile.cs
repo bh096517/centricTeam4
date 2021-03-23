@@ -11,7 +11,8 @@ namespace centricTeam4.Models
     public class Profile
     {
         public Guid ProfileID { get; set; }
-        
+       
+        //public int profileID { get; set; }
         [Required]
         [Display(Name = "Last Name")]
         public string lastName { get; set; }
