@@ -16,9 +16,24 @@ namespace centricTeam4.Controllers
         private MIS4200Team4Context db = new MIS4200Team4Context();
 
         // GET: Profiles
-        public ActionResult Index()
+        public ActionResult Index(int? page, string searchString)
         {
-            return View(db.profile.ToList());
+            int pgSize = 10;
+            int pageNumber = (page ?? 1);
+            var Profile = from r in db.profile select r;
+            // sort the records
+            Profile = Profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            // check to see if a search was made a request it
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                Profile = Profile.Where(r => r.lastName.Contains(searchString) || (r.firstName.Contains(searchString)));
+            }
+            var profileList = Profile;
+                //ToPagedList(pageNumber);
+            return View(profileList);
+            //var Profile = db.profile;
+            //var sortedProfile = Profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            //return View(sortedProfile.ToList());
         }
 
         // GET: Profiles/Details/5

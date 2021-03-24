@@ -18,6 +18,9 @@ namespace centricTeam4.Controllers
         // GET: employeeRecognitions
         public ActionResult Index()
         {
+            //var profile = db.profile;
+            //var sortedProfile = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            //return View(sortedProfile.ToList());
             return View(db.EmployeeRecognitions.ToList());
         }
 
@@ -40,6 +43,12 @@ namespace centricTeam4.Controllers
        [Authorize]
         public ActionResult Create()
         {
+            var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            //var sortedProfile = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName");
+            var Profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            //var sortedProfiles = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName");
             return View();
         }
 

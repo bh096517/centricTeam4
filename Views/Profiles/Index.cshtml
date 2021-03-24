@@ -9,7 +9,14 @@
 <p>
     @Html.ActionLink("Create", "Create")
 </p>
-<table class="table">
+@using (Html.BeginForm("Index", "Profile", FormMethod.Get))
+{
+    <p>
+    Find by name: @Html.TextBox("searchString")
+    <input type="submit" value="Seacrh" />
+    </p>
+}
+<table class="table table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.lastName)
