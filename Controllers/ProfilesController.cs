@@ -63,7 +63,7 @@ namespace centricTeam4.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProfileID,lastName,firstName,office,position,hireDate,phoneNumber,email,photo")] Profile profile)
+        public ActionResult Create([Bind(Include = "ProfileID,lastName,firstName,office,position,hireDate,phoneNumber,email,/*photo*/")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace centricTeam4.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProfileID,lastName,firstName,office,position,hireDate,phoneNumber,email,photo")] Profile profile)
+        public ActionResult Edit([Bind(Include = "ProfileID,lastName,firstName,office,position,hireDate,phoneNumber,email,/*photo*/")] Profile profile)
         {
             if (ModelState.IsValid)
             {

@@ -44,7 +44,7 @@ namespace centricTeam4.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string email { get; set; }
-        public string photo { get; set; }
+        //public string photo { get; set; }
 
     }
 }

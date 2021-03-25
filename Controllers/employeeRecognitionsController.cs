@@ -21,7 +21,8 @@ namespace centricTeam4.Controllers
             //var profile = db.profile;
             //var sortedProfile = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
             //return View(sortedProfile.ToList());
-            return View(db.EmployeeRecognitions.ToList());
+            var recognition = db.EmployeeRecognitions.Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
+            return View(recognition.ToList());
         }
 
         // GET: employeeRecognitions/Details/5
