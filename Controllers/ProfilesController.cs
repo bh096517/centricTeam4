@@ -18,7 +18,7 @@ namespace centricTeam4.Controllers
         // GET: Profiles
         public ActionResult Index(int? page, string searchString)
         {
-            int pgSize = 10;
+            //int pgSize = 10;
             int pageNumber = (page ?? 1);
             var Profile = from r in db.profile select r;
             // sort the records

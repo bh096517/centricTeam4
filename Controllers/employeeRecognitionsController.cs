@@ -79,12 +79,23 @@ namespace centricTeam4.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            employeeRecognition employeeRecognition = db.EmployeeRecognitions.Find(id);
+            var employeeRecognition = db.EmployeeRecognitions.Where(e=>e.ID==id).Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
             if (employeeRecognition == null)
             {
                 return HttpNotFound();
             }
-            return View(employeeRecognition);
+            var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            //var sortedProfile = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName");
+            var Profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            //var sortedProfiles = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
+            ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName");
+            var forceEdit = (centricTeam4.Models.employeeRecognition)employeeRecognition;
+            return View(forceEdit);
+            //return View();
+            //var editRecognition = employeeRecognition.Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
+            //return View(editRecognition.ToList());
+            
         }
 
         // POST: employeeRecognitions/Edit/5
@@ -102,6 +113,8 @@ namespace centricTeam4.Controllers
                 return RedirectToAction("Index");
             }
             return View(employeeRecognition);
+            //var editRecognition = db.EmployeeRecognitions.Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
+            //return View(editRecognition.ToList());
         }
 
         // GET: employeeRecognitions/Delete/5

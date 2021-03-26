@@ -272,6 +272,7 @@
     <Content Include="Views\employeeRecognitions\Details.cshtml" />
     <Content Include="Views\employeeRecognitions\Edit.cshtml" />
     <Content Include="Views\employeeRecognitions\Index.cshtml" />
+    <Content Include="Views\employeeRecognitions\newEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
