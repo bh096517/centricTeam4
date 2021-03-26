@@ -79,19 +79,19 @@ namespace centricTeam4.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var employeeRecognition = db.EmployeeRecognitions.Where(e=>e.ID==id).Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
+            //   var employeeRecognition = db.EmployeeRecognitions.Where(e=>e.ID==id).Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
+            //  var employeeRecognition = db.EmployeeRecognitions.Where(e => e.ID == id);
+            var employeeRecognition = db.EmployeeRecognitions.Find(id);
+
             if (employeeRecognition == null)
             {
                 return HttpNotFound();
             }
             var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
-            //var sortedProfile = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
-            ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName");
-            var Profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
-            //var sortedProfiles = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
-            ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName");
-            var forceEdit = (centricTeam4.Models.employeeRecognition)employeeRecognition;
-            return View(forceEdit);
+            ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognizor);
+            ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognized);
+
+            return View(employeeRecognition);
             //return View();
             //var editRecognition = employeeRecognition.Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
             //return View(editRecognition.ToList());
@@ -112,6 +112,9 @@ namespace centricTeam4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognizor);
+            ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognized);
             return View(employeeRecognition);
             //var editRecognition = db.EmployeeRecognitions.Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
             //return View(editRecognition.ToList());
