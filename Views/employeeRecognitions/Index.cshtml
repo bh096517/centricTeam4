@@ -9,43 +9,52 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.award)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.recognizor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.recognized)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.recognizationDate)
-        </th>
-        <th></th>
-    </tr>
+<search class="text-muted">
+    @using (Html.BeginForm("Index", "Profiles", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("searchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.award)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recognizor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recognized)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.recognizationDate)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.award)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.personGivingRecognition.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.personGettingRecognition.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.recognizationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.award)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personGivingRecognition.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personGettingRecognition.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.recognizationDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>

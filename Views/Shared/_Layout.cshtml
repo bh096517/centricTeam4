@@ -49,11 +49,11 @@
             <a href="@Url.Action("Index", "Home")" class="navbar-brand">
                 <img src="~/Content/Images/centric.png" alt="Centric Logo" width="210" height="30" />
             </a>
-            @Html.ActionLink("Centric", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @*@Html.ActionLink("Centric", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Profile", "Index", "Profiles")</li>
