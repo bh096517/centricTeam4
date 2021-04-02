@@ -15,9 +15,11 @@ namespace centricTeam4.Models
         //public int profileID { get; set; }
         [Required]
         [Display(Name = "Last Name")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage ="Digits or special characters are not allowed to be used in a name")]
         public string lastName { get; set; }
         [Required]
         [Display(Name = "First Name")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "Digits or special characters are not allowed to be used in a name")]
         public string firstName { get; set; }
         [Display(Name = "Full Name")]
         public string fullName
@@ -37,6 +39,7 @@ namespace centricTeam4.Models
         [Display(Name = "Hire Date")]
         //[DisplayFormat(DataFormatString = DateTime, ApplyFormatInEditMode = true)]
         public DateTime hireDate { get; set; }
+        //[RegularExpression(^\(? ([0 - 9]{3})\)?[-.●]? ([0 - 9]{3})[-.●]? ([0 - 9]{ 4})$)]
         [Display(Name = "Primary Phone")]
         [Phone]
         public string phoneNumber { get; set; }

@@ -20,8 +20,11 @@ namespace centricTeam4.Models
         public Guid recognized { get; set; }
         [ForeignKey("recognized")]
         public virtual Profile personGettingRecognition { get; set; }
-        [Display(Name = "Date recognition given")]
-        public DateTime recognizationDate { get; set; }
+        
+        //[Range(typeof(DateTime), "1/1/2020", "12/31/2021")]
+        //[Display(Name = "Date recognition given")]
+        
+        public DateTime? recognizationDate { get; set; }
         public enum CoreValue
         {
             Excellence = 1,

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using centricTeam4.DAL;
 using centricTeam4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace centricTeam4.Controllers
 {
@@ -63,6 +64,10 @@ namespace centricTeam4.Controllers
         {
             if (ModelState.IsValid)
             {
+                employeeRecognition.recognizationDate = DateTime.Now;
+                Guid employeeID;
+                Guid.TryParse(User.Identity.GetUserId(), out employeeID);
+                employeeRecognition.recognizor = employeeID;
                 db.EmployeeRecognitions.Add(employeeRecognition);
                 db.SaveChanges();
                 return RedirectToAction("Index");

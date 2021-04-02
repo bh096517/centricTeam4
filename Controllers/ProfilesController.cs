@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using centricTeam4.DAL;
 using centricTeam4.Models;
+using Microsoft.AspNet.Identity;
 
 namespace centricTeam4.Controllers
 {
@@ -67,7 +68,10 @@ namespace centricTeam4.Controllers
         {
             if (ModelState.IsValid)
             {
-                profile.ProfileID = Guid.NewGuid();
+                Guid employeeID;
+                Guid.TryParse(User.Identity.GetUserId(), out employeeID);
+                profile.ProfileID = employeeID;
+                //profile.ProfileID = Guid.NewGuid();
                 db.profile.Add(profile);
 
                 try
@@ -80,8 +84,8 @@ namespace centricTeam4.Controllers
                     return View("DuplicateUser");
                 }
                 return RedirectToAction("Index");
-                //db.SaveChanges();
-                //return RedirectToAction("Index");
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View(profile);
