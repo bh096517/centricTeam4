@@ -42,7 +42,7 @@ namespace centricTeam4.Controllers
         }
 
         // GET: employeeRecognitions/Create
-       [Authorize]
+        [Authorize]
         public ActionResult Create()
         {
             var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
@@ -93,14 +93,26 @@ namespace centricTeam4.Controllers
                 return HttpNotFound();
             }
             var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
-            ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognizor);
-            ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognized);
+            var IDCheck = employeeRecognition.recognizor;
+            Guid employeeID;
+            Guid.TryParse(User.Identity.GetUserId(), out employeeID);
+            if (IDCheck == employeeID)
+            {
 
-            return View(employeeRecognition);
+
+                ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognizor);
+                ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognized);
+
+                return View(employeeRecognition);
+            }
+            else
+            {
+                return View("NotAllowed");
+            }
             //return View();
             //var editRecognition = employeeRecognition.Include(r => r.personGivingRecognition).Include(r => r.personGettingRecognition);
             //return View(editRecognition.ToList());
-            
+
         }
 
         // POST: employeeRecognitions/Edit/5
@@ -108,7 +120,7 @@ namespace centricTeam4.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-       [Authorize]
+        [Authorize]
         public ActionResult Edit([Bind(Include = "ID,award,recognizor,recognized,recognizationDate")] employeeRecognition employeeRecognition)
         {
             if (ModelState.IsValid)
@@ -126,7 +138,7 @@ namespace centricTeam4.Controllers
         }
 
         // GET: employeeRecognitions/Delete/5
-       [Authorize]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,11 +150,26 @@ namespace centricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(employeeRecognition);
-        }
+            //var profile = db.profile.OrderBy(c => c.lastName).ThenBy(c => c.firstName);
+            var IDCheck = employeeRecognition.recognizor;
+            Guid employeeID;
+            Guid.TryParse(User.Identity.GetUserId(), out employeeID);
+            if (IDCheck == employeeID)
+            {
 
-        // POST: employeeRecognitions/Delete/5
-        [HttpPost, ActionName("Delete")]
+
+                //ViewBag.recognizor = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognizor);
+                //ViewBag.recognized = new SelectList(profile, "ProfileID", "fullName", employeeRecognition.recognized);
+
+                return View(employeeRecognition);
+            }
+            else
+            {
+                return View("DeleteNotAllowed");
+            }
+        }
+            // POST: employeeRecognitions/Delete/5
+            [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
