@@ -21,17 +21,23 @@ namespace centricTeam4.Controllers
         {
             //int pgSize = 10;
             int pageNumber = (page ?? 1);
-            var Profile = from r in db.profile select r;
+            //var Profile = from r in db.profile select r;
+            var Profile = db.profile.Include(p => p.personGettingRecognition);
+          
+            //var award = (from coreValue in employeeRecognition
+            //              group employeeRecognition by new
+            //              { e = award.employee.ID, a = award,r                   }
+            //              )
             // sort the records
             Profile = Profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
             // check to see if a search was made a request it
-            if(!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 Profile = Profile.Where(r => r.lastName.Contains(searchString) || (r.firstName.Contains(searchString)));
             }
             var profileList = Profile;
-                //ToPagedList(pageNumber);
-            return View(profileList);
+            //ToPagedList(pageNumber);
+            return View(profileList.ToList());
             //var Profile = db.profile;
             //var sortedProfile = Profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
             //return View(sortedProfile.ToList());
@@ -77,15 +83,16 @@ namespace centricTeam4.Controllers
                 try
                 {
                     db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
                     ViewBag.error = ex.Message;
                     return View("DuplicateUser");
                 }
-                return RedirectToAction("Index");
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
 
             return View(profile);
@@ -157,6 +164,10 @@ namespace centricTeam4.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult ProfilesAndRecognitions()
+        {
+            return View();
         }
     }
 }

@@ -24,7 +24,7 @@ using System.Web;
         public DbSet<employeeRecognition> EmployeeRecognitions { get; set; }
         //public DbSet<recognition> Recognition { get; set; }
 
-
+        
 
     }
     }

@@ -43,6 +43,10 @@
             </th>
             <th>
                 @*@Html.DisplayNameFor(model => model.photo)*@
+                Total Recognitions
+            </th>
+            <th>
+                Award Given
             </th>
             <th></th>
         </tr>
@@ -72,7 +76,18 @@
                     @Html.DisplayFor(modelItem => item.email)
                 </td>
                 <td>
-                    @*@Html.DisplayFor(modelItem => item.photo)*@
+                    @{ 
+                        var recognitionCount = item.personGettingRecognition.Count();
+                       }
+                    @recognitionCount
+
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.personGettingRecognition)
+                        {<div> @a.award</div>} 
+                       
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.ProfileID }) |
