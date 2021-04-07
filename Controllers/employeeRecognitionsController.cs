@@ -22,7 +22,7 @@ namespace centricTeam4.Controllers
             //var profile = db.profile;
             //var sortedProfile = profile.OrderBy(r => r.lastName).ThenBy(r => r.firstName);
             //return View(sortedProfile.ToList());
-            var recognition = db.EmployeeRecognitions.Include(r => r.personGivingRecognition);
+            var recognition = db.EmployeeRecognitions.Include(r => r.personGettingRecognition);
             return View(recognition.ToList());
         }
 

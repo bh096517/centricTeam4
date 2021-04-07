@@ -49,9 +49,10 @@ namespace centricTeam4.Models
         [Display(Name = "Email")]
         public string email { get; set; }
         //public string photo { get; set; }
-        [ForeignKey("recognized")]
-        public ICollection<employeeRecognition> personGivingRecognition { get; set; }
         [ForeignKey("recognizor")]
+        public ICollection<employeeRecognition> personGivingRecognition { get; set; }
+        
+        [ForeignKey("recognized")]
         public ICollection<employeeRecognition> personGettingRecognition { get; set; }
         //public ICollection<employeeRecognition> award { get; set; }
 
