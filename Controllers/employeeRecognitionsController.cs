@@ -29,6 +29,9 @@ namespace centricTeam4.Controllers
         // GET: employeeRecognitions/Details/5
         public ActionResult Details(int? id)
         {
+            var recognition = db.EmployeeRecognitions.Include(r => r.personGettingRecognition);
+            var ProfileGive = db.profile.Include(g => g.personGivingRecognition);
+            var ProfileDate = db.profile.Include(d => d.recognitionDate);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

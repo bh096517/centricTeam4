@@ -1,0 +1,56 @@
+﻿@model IEnumerable<centricTeam4.Models.employeeRecognition>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<div class="row">
+    <div class="col-md-2"> &nbsp; </div>
+
+
+    <div class="col-md-8">
+        <table class="table table-bordered">
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.personGettingRecognition.lastName)
+                </th>*@
+                <th>
+                    Person Giving Recognition
+                    @*@Html.DisplayNameFor(model => model.personGivingRecognition.fullName)*@
+                </th>
+                <th>
+                    Core Value Recognized
+                    @*@Html.DisplayNameFor(model => model.award)*@
+                </th>
+                <th>
+                    Date Recevied
+                    @*@Html.DisplayNameFor(model => model.recognizationDate)*@
+                </th>
+                @*<th></th>*@
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.personGettingRecognition.lastName)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.personGivingRecognition.fullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.award)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.recognizationDate)
+                    </td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                    </td>*@
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

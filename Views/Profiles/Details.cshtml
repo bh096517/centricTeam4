@@ -4,12 +4,12 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Profile Details</h2>
 
 <div>
-    <h4>Profile</h4>
+    @*<h4>Profile</h4>*@
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal table table-condensed">
         <dt>
             @Html.DisplayNameFor(model => model.lastName)
         </dt>
@@ -67,14 +67,29 @@
         </dd>
 
         <dt>
+            @*@{
+                    foreach (var a in Model.personGettingRecognition)
+                    {<div> @a.award</div>}
+
+                }*@
+
             @*@Html.DisplayNameFor(model => model.photo)*@
         </dt>
 
         <dd>
+            @*@{
+                    var recognitionCount = Model.personGettingRecognition.Count();
+                }
+                @recognitionCount*@
             @*@Html.DisplayFor(model => model.photo)*@
         </dd>
 
     </dl>
+    @{
+        centricTeam4.DAL.MIS4200Team4Context db = new centricTeam4.DAL.MIS4200Team4Context();
+        var recognitions = db.EmployeeRecognitions.Where(r => r.recognized == Model.ProfileID);
+        Html.RenderPartial("_recognitionDetails", recognitions.ToList());
+    }
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ProfileID }) |

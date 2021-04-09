@@ -46,6 +46,10 @@ namespace centricTeam4.Controllers
         // GET: Profiles/Details/5
         public ActionResult Details(Guid? id)
         {
+            var Profile = db.profile.Include(p => p.personGettingRecognition);
+            var ProfileGive = db.profile.Include(g => g.personGivingRecognition);
+            var ProfileDate = db.profile.Include(d => d.recognitionDate);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

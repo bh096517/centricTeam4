@@ -55,6 +55,7 @@ namespace centricTeam4.Models
         [ForeignKey("recognized")]
         public ICollection<employeeRecognition> personGettingRecognition { get; set; }
         //public ICollection<employeeRecognition> award { get; set; }
+        public ICollection<employeeRecognition> recognitionDate { get; set; }
 
     }
 }
