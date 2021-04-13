@@ -94,6 +94,7 @@ namespace centricTeam4.Controllers
                     ViewBag.error = ex.Message;
                     return View("DuplicateUser");
                 }
+
                 //return RedirectToAction("Index");
                 //db.SaveChanges();
                 //return RedirectToAction("Index");
@@ -115,7 +116,17 @@ namespace centricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(profile);
+           
+            Guid employeeID;
+            Guid.TryParse(User.Identity.GetUserId(), out employeeID);
+            if (id == employeeID)
+            {
+                return View(profile);
+            }
+            else
+            {
+                return View("NotAllowed");
+            }
         }
 
         // POST: Profiles/Edit/5
@@ -147,7 +158,16 @@ namespace centricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-            return View(profile);
+            Guid employeeID;
+            Guid.TryParse(User.Identity.GetUserId(), out employeeID);
+            if (id == employeeID)
+            {
+                return View(profile);
+            }
+            else
+            {
+                return View("DeleteNotAllowed");
+            }
         }
 
         // POST: Profiles/Delete/5
