@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using centricTeam4.DAL;
 using centricTeam4.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace centricTeam4.Controllers
 {
