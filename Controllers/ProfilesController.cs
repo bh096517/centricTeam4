@@ -24,7 +24,7 @@ namespace centricTeam4.Controllers
             int pageNumber = (page ?? 1);
             //var Profile = from r in db.profile select r;
             var Profile = db.profile.Include(p => p.personGettingRecognition);
-          
+
             //var award = (from coreValue in employeeRecognition
             //              group employeeRecognition by new
             //              { e = award.employee.ID, a = award,r                   }
@@ -117,7 +117,7 @@ namespace centricTeam4.Controllers
             {
                 return HttpNotFound();
             }
-           
+
             Guid employeeID;
             Guid.TryParse(User.Identity.GetUserId(), out employeeID);
             if (id == employeeID)
@@ -193,6 +193,42 @@ namespace centricTeam4.Controllers
         public ActionResult ProfilesAndRecognitions()
         {
             return View();
+        }
+        private static List<DataPoint> _dataPoints;
+        JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
+        public ActionResult categoryCharts(string chartType)
+        {
+            if (chartType is null || chartType.Length < 3)
+            {
+                chartType = "Bar";
+            }
+            _dataPoints = new List<DataPoint>();
+            var Profile = db.profile.OrderByDescending(p => p.personGettingRecognition.Count()).Take(10);
+
+            try
+            {
+                foreach (var Prof in Profile)
+                {
+                    var x = Prof.personGettingRecognition.Count();
+                    var y = Prof.fullName;
+                    _dataPoints.Add(new DataPoint(x, y));
+                }
+                ViewBag.chartType = chartType;
+                ViewBag.chartTitle = "Number of Each Core Value Received";
+                ViewBag.DataPoints = JsonConvert.SerializeObject(_dataPoints.ToList(), _jsonSetting);
+            }
+            catch (System.Data.Entity.Core.EntityException)
+            {
+
+                return View("Error");
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                return View("Error");
+            }
+            return View();
+
         }
     }
 }

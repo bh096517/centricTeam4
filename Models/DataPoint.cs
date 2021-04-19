@@ -63,3 +63,39 @@ namespace centricTeam4.Models
         public Nullable<double> Z = null;
     }
 }
+//    private static List<DataPoint> _dataPoints;
+//    JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+
+//    public ActionResult categoryCharts(string chartType)
+//    {
+//        if (chartType is null || chartType.Length < 3)
+//        {
+//            chartType = "pie";
+//        }
+//        _dataPoints = new List<DataPoint>();
+//        var catergories = DBNull.employeeRecognitions.Where(c => c.Award.Count > 0);
+//        try
+//        {
+//            foreach (var cat in catergories)
+//            {
+//                var x = cat.Award.Count();
+//                var y = catergories.CategoryName;
+//                _dataPoints.Add(new DataPoint(x, y));
+//            }
+//            ViewBag.chartType = chartType;
+//            ViewBag.chartTitle = "Number of Each Core Value Received";
+//            ViewBag.DataPoints = JsonConvert.SerializeObject(_dataPoints.ToList(), _jsonSetting);
+//        }
+//        catch (System.Data.Entity.Core.EntityException)
+//        {
+
+//            return View("Error");
+//        }
+//        catch (System.Data.SqlClient.SqlException)
+//        {
+//            return View("Error");
+//        }
+//        return View();
+
+//    }
+//}
