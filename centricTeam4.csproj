@@ -280,6 +280,7 @@
     <Content Include="Views\Profiles\_recognitionDetails.cshtml" />
     <Content Include="Views\Profiles\DeleteNotAllowed.cshtml" />
     <Content Include="Views\Profiles\NotAllowed.cshtml" />
+    <Content Include="Views\Profiles\categoryCharts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

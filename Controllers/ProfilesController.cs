@@ -194,17 +194,18 @@ namespace centricTeam4.Controllers
         {
             return View();
         }
+
         private static List<DataPoint> _dataPoints;
         JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
 
         public ActionResult categoryCharts(string chartType)
         {
-            if (chartType is null || chartType.Length < 3)
-            {
-                chartType = "Bar";
-            }
+
+            chartType = "bar";
+
             _dataPoints = new List<DataPoint>();
-            var Profile = db.profile.OrderByDescending(p => p.personGettingRecognition.Count()).Take(10);
+            var Profile = db.profile.Include(p => p.personGettingRecognition).OrderByDescending(p => p.personGettingRecognition.Count()).Take(10);
+            //var Profile = db.profile.OrderByDescending(p => p.personGettingRecognition.Count()).Take(10);
 
             try
             {
